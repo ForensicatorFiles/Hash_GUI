@@ -37,3 +37,51 @@ Ensure you have Python 3.10+ installed.
 **Install required dependencies:**
 ```bash
 pip install customtkinter tkinterdnd2 PyPDF2
+```
+
+*(Note: The CLI version only requires standard Python libraries and has zero external dependencies).*
+
+---
+
+## 💻 Usage Instructions
+
+### Using the CLI Version
+Open your terminal or command prompt and pass the target file or folder as an argument.
+
+**Hash a single file (Both MD5 and SHA256):**
+```bash
+python hash_CLI.py "C:\Evidence\Raw_Dump.bin"
+```
+
+**Hash an entire directory (MD5 only):**
+```bash
+python hash_CLI.py "C:\Evidence\Extraction_Folder" -a md5
+```
+
+**Arguments:**
+* `target`: Path to a single file or directory.
+* `-a`, `--algorithm`: Specify `md5`, `sha256`, or `both` (Default is `both`).
+
+### Using the GUI Versions (v2 & v3)
+Simply run the script to launch the interface:
+```bash
+python hash_GUI_v3.py
+```
+1. Select your hashing algorithm (MD5, SHA256, or Both).
+2. *(v3 Only)* Click **Load PDF Report** and select your forensic report. If you drop a folder containing a PDF, the tool will automatically detect it and set it as the active report.
+3. Drag and drop your evidentiary files or folders into the UI box.
+4. Click **Compute Hash**. 
+5. Results are logged to a `Hashes.txt` file located in the same directory as the processed files, complete with full absolute file paths.
+
+---
+
+## 🛠️ Building a Standalone Executable (Optional)
+
+If you want to compile the GUI into a single `.exe` file that can be run on analysis machines without Python installed:
+
+1. Install PyInstaller: `pip install pyinstaller`
+2. Run the build command:
+```bash
+pyinstaller --noconsole --onefile --collect-all customtkinter --collect-all tkinterdnd2 hash_GUI_v3.py
+```
+The compiled executable will be located in the `dist/` folder.
